@@ -1,16 +1,53 @@
-// Get a reference to the image element
-const image = document.querySelector('img');
-image.src="Enhanced.jpeg"
+// Define the canvas element
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
 
-// Give the image element an ID
+// Define the size of each grid cell
+const gridSize = 20;
 
-// Define the animation function
-function animateImage() {
-    // Add your animation logic here
-    // For example, you can change the image's position, opacity, or size over time using CSS transitions or animations
-    image.style.transform = 'rotate(360deg)';
-    image.style.transition = 'transform 1s';
+// Define the initial position of the snake
+let snake = [
+    { x: 10, y: 10 },
+    { x: 9, y: 10 },
+    { x: 8, y: 10 }
+];
+
+// Define the initial direction of the snake
+let direction = "right";
+
+// Main game loop
+function gameLoop() {
+    // Clear the canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Update the snake position
+    const head = { x: snake[0].x, y: snake[0].y };
+    switch (direction) {
+        case "up":
+            head.y--;
+            break;
+        case "down":
+            head.y++;
+            break;
+        case "left":
+            head.x--;
+            break;
+        case "right":
+            head.x++;
+            break;
+    }
+    snake.unshift(head);
+    snake.pop();
+
+    // Draw the snake
+    snake.forEach(segment => {
+        ctx.fillStyle = "green";
+        ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize, gridSize);
+    });
+
+    // Call the game loop again
+    requestAnimationFrame(gameLoop);
 }
 
-// Call the animation function
-animateImage();
+// Start the game loop
+gameLoop();
