@@ -1,12 +1,19 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-    <title>Page with 3 columns</title>
-
+    <title>Your Title Here</title>
 </head>
-<body>
-    <iframe  src="column1.html"></iframe>
-    <iframe  src="column2.html"></iframe>
-    <iframe  src="column3.html"></iframe>
+<frameset rows="60%,*,*">
+    <frame src="frame1.html">
+        <frameset cols="50%,*">
+            <frame src="frame2.html">
+            <frame src="column2.html">
+        </frameset>
+    <frame src="column1.html">
+</frameset>
+
+<body >
+    <h1>Your Heading Here</h1>
+    <p>Your paragraph here.</p>
 </body>
 </html>
